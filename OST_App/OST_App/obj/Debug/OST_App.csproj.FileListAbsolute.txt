@@ -1,0 +1,13 @@
+C:\Users\Miroslav\Documents\FER\9. semestar\OST\Project_WPF\OST_App\OST_App\bin\Debug\OST_App.exe.config
+C:\Users\Miroslav\Documents\FER\9. semestar\OST\Project_WPF\OST_App\OST_App\bin\Debug\OST_App.exe
+C:\Users\Miroslav\Documents\FER\9. semestar\OST\Project_WPF\OST_App\OST_App\bin\Debug\OST_App.pdb
+C:\Users\Miroslav\Documents\FER\9. semestar\OST\Project_WPF\OST_App\OST_App\obj\Debug\OST_App.csprojResolveAssemblyReference.cache
+C:\Users\Miroslav\Documents\FER\9. semestar\OST\Project_WPF\OST_App\OST_App\obj\Debug\MainWindow.baml
+C:\Users\Miroslav\Documents\FER\9. semestar\OST\Project_WPF\OST_App\OST_App\obj\Debug\MainWindow.g.cs
+C:\Users\Miroslav\Documents\FER\9. semestar\OST\Project_WPF\OST_App\OST_App\obj\Debug\App.g.cs
+C:\Users\Miroslav\Documents\FER\9. semestar\OST\Project_WPF\OST_App\OST_App\obj\Debug\OST_App_MarkupCompile.cache
+C:\Users\Miroslav\Documents\FER\9. semestar\OST\Project_WPF\OST_App\OST_App\obj\Debug\OST_App.g.resources
+C:\Users\Miroslav\Documents\FER\9. semestar\OST\Project_WPF\OST_App\OST_App\obj\Debug\OST_App.Properties.Resources.resources
+C:\Users\Miroslav\Documents\FER\9. semestar\OST\Project_WPF\OST_App\OST_App\obj\Debug\OST_App.csproj.GenerateResource.Cache
+C:\Users\Miroslav\Documents\FER\9. semestar\OST\Project_WPF\OST_App\OST_App\obj\Debug\OST_App.exe
+C:\Users\Miroslav\Documents\FER\9. semestar\OST\Project_WPF\OST_App\OST_App\obj\Debug\OST_App.pdb

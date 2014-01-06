@@ -1,0 +1,13 @@
+﻿<Window x:Class="OST_App.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="492" Width="887">
+    <Grid>
+        <Image HorizontalAlignment="Left" Name="image1" Height="274" Margin="20,58,0,0" VerticalAlignment="Top" Width="512" Stretch="Fill" />
+        <TextBox x:Name="txtBrowseFile" HorizontalAlignment="Left" Height="23" Margin="20,30,0,0" TextWrapping="Wrap" Text="Browse for photo..." VerticalAlignment="Top" Width="512"/>
+        <Button Content="Browse" x:Name="btnBrowse" HorizontalAlignment="Left" Margin="537,30,0,0" VerticalAlignment="Top" Width="122" Height="23" Click="btnBrowse_Click"/>
+        <Button Content="Submit data" x:Name="btnUpload" HorizontalAlignment="Left" Margin="537,58,0,0" VerticalAlignment="Top" Width="122" Height="23" Click="btnUpload_Click" />
+        <TextBox HorizontalAlignment="Left" Height="102" Margin="20,337,0,0" TextWrapping="Wrap" Text="Enter data" VerticalAlignment="Top" Width="512" />
+
+    </Grid>
+</Window>
