@@ -12,15 +12,34 @@
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Vertical">
-                        <Label Content="{Binding Words}" FontWeight="Bold"/>
+                        <TextBlock Text="{Binding Title}" FontWeight="Bold" TextWrapping="Wrap"/>
                         <TextBlock Text="{Binding Desc}" Padding="20, 0, 0, 0" TextWrapping="Wrap"/>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
         <Label x:Name="synsetsFoundMsg" Content="" HorizontalAlignment="Left" Margin="683,49,0,0" VerticalAlignment="Top" Width="308" Height="28" ToolTip="Type word to find it's synsets"/>
-        <Button x:Name="btnAddSynset" Content="&lt;" HorizontalAlignment="Left" Margin="626,207,0,0" VerticalAlignment="Top" Width="33" Height="54" Click="btnAddSynset_Click" IsEnabled="False"/>
-        <ListBox x:Name="taggedSynsetsListBox" HorizontalAlignment="Left" Height="102" Margin="20,328,0,0" VerticalAlignment="Top" Width="512"/>
+        <Button x:Name="btnAddSynset" Content="&lt;" HorizontalAlignment="Left" Margin="626,351,0,0" VerticalAlignment="Top" Width="33" Height="54" Click="btnAddSynset_Click" IsEnabled="False"/>
+        <ListBox x:Name="synsetsTaggedListBox" HorizontalAlignment="Left" Height="102" Margin="20,328,0,0" VerticalAlignment="Top" Width="512" ScrollViewer.HorizontalScrollBarVisibility="Disabled" BorderThickness="0">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="{x:Type ListBoxItem}">
+                    <Setter Property="Focusable" Value="False"/>
+                </Style>
+            </ListBox.ItemContainerStyle>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal" Margin="5">
+                        <Label Content="{Binding Title}" Background="#FFC3C3C3" Foreground="Black" FontWeight="Bold" Tag="{Binding}" MouseEnter="LabelTag_MouseEnter" MouseLeave="LabelTag_MouseLeave"/>
+                        <Label x:Name="labelDeleteTag" Content="X" Background="Black" Foreground="White" Tag="{Binding}" FontWeight="Bold" MouseDown="labelDeleteTag_MouseDown" Cursor="Hand"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
 
     </Grid>
 </Window>

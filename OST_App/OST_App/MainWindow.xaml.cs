@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.ComponentModel;
+using System.Windows.Controls.Primitives;
 
 using LAIR.ResourceAPIs.WordNet;
 using LAIR.Collections.Generic;
@@ -28,6 +29,9 @@ namespace OST_App
         private WordNetEngine _wordNetEngine;
 
         private BindingList<SynSetListItem> synsetsFound = new BindingList<SynSetListItem>();
+        private BindingList<SynSetListItem> synsetsTagged = new BindingList<SynSetListItem>();
+
+        private Popup tagPopup = null; // Tooltip that shows information about synset tag
 
         public MainWindow()
         {
@@ -37,6 +41,7 @@ namespace OST_App
             _wordNetEngine = new WordNetEngine(@"..\..\..\dict\", false); // TODO: Set some other path, absolute (which one)?
 
             synsetsFoundListBox.ItemsSource = synsetsFound;
+            synsetsTaggedListBox.ItemsSource = synsetsTagged;
             findSynsets(); // For initialization of GUI elements
         }
 
@@ -100,15 +105,16 @@ namespace OST_App
                     // Populate the list of found synsets
                     foreach (SynSet synset in synsets)
                     {
-                        StringBuilder words = new StringBuilder();
+                        StringBuilder title = new StringBuilder();
                         bool prependComma = false;
                         foreach (string w in synset.Words)
                         {
-                            words.Append((prependComma ? ", " : "") + w);
+                            title.Append((prependComma ? ", " : "") + w);
                             prependComma = true;
                         }
+                        title.Append(" [" + synset.POS + "]");
 
-                        synsetsFound.Add(new SynSetListItem { Synset = synset, Words = words.ToString(), Desc = synset.Gloss });
+                        synsetsFound.Add(new SynSetListItem { Synset = synset, Title = title.ToString(), Desc = synset.Gloss });
                     }
 
                     synsetsFoundMsg.Visibility = System.Windows.Visibility.Hidden;
@@ -131,7 +137,7 @@ namespace OST_App
         class SynSetListItem
         {
             public SynSet Synset { get; set; }
-            public String Words { get; set; }
+            public String Title { get; set; }
             public String Desc { get; set; }
         }
 
@@ -143,13 +149,64 @@ namespace OST_App
         private void btnAddSynset_Click(object sender, RoutedEventArgs e)
         {
             SynSetListItem selectedSynset = ((SynSetListItem)synsetsFoundListBox.SelectedItem);
-            if (selectedSynset != null)
-                MessageBox.Show(selectedSynset.Synset.ID);
+            if (selectedSynset != null && !synsetsTagged.Contains(selectedSynset))
+                synsetsTagged.Add(selectedSynset);
+            synsetsFoundListBox.SelectedItem = null;
         }
 
         private void synsetsFoundListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            btnAddSynset.IsEnabled = synsetsFoundListBox.SelectedItem != null;
+            btnAddSynset.IsEnabled = synsetsFoundListBox.SelectedItem != null && !synsetsTagged.Contains(synsetsFoundListBox.SelectedItem);
         }
+
+        private void labelDeleteTag_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            synsetsTagged.Remove((SynSetListItem)((Label)sender).Tag);
+        }
+
+        /// <summary>
+        /// Show tooltip when mouse enters synset tag.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void LabelTag_MouseEnter(object sender, MouseEventArgs e)
+        {
+            SynSetListItem synsetLI = (SynSetListItem)((Label)sender).Tag;
+            Popup popup = new Popup();
+            popup.Child = new Border
+            {
+                BorderThickness = new Thickness(1),
+                BorderBrush = Brushes.Black,
+                Child = new TextBlock
+                {
+                    Background = Brushes.White,
+                    Text = synsetLI.Desc,
+                    Padding = new Thickness(5),
+                    TextWrapping = TextWrapping.Wrap,
+                    MaxWidth = 300
+                }
+            };
+            popup.PlacementTarget = (UIElement)sender;
+            popup.HorizontalOffset = popup.VerticalOffset = 5;
+            
+            popup.IsOpen = true;
+            tagPopup = popup;
+        }
+
+        /// <summary>
+        /// Remove tooltip when mouse leaves synset tag.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void LabelTag_MouseLeave(object sender, MouseEventArgs e)
+        {
+            if (tagPopup != null)
+            {
+                tagPopup.IsOpen = false;
+                tagPopup = null;
+            }
+        }
+
+
     }
 }
