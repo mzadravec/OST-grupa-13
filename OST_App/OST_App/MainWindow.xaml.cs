@@ -34,8 +34,7 @@ namespace OST_App
             InitializeComponent();
 
             // create wordnet engine (use disk-based retrieval by default)
-            string root = Directory.GetDirectoryRoot(".");
-            _wordNetEngine = new WordNetEngine(root + @"\Users\Martin\Documents\GitHub\OST-grupa-13\OST_App\dict\", false);
+            _wordNetEngine = new WordNetEngine(@"..\..\..\dict\", false); // TODO: Set some other path, absolute (which one)?
 
             synsetsFoundListBox.ItemsSource = synsetsFound;
             findSynsets(); // For initialization of GUI elements
