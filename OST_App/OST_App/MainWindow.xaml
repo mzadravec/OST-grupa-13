@@ -1,15 +1,14 @@
 ﻿<Window x:Class="OST_App.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="492" Width="1020.005">
+        Title="MainWindow" Height="480.818" Width="1020.005">
     <Grid>
-        <Image HorizontalAlignment="Left" Name="image1" Height="274" Margin="20,58,0,0" VerticalAlignment="Top" Width="512" Stretch="Fill" />
-        <TextBox x:Name="txtBrowseFile" HorizontalAlignment="Left" Height="23" Margin="20,30,0,0" TextWrapping="Wrap" Text="Browse for photo..." VerticalAlignment="Top" Width="512"/>
-        <Button Content="Browse" x:Name="btnBrowse" HorizontalAlignment="Left" Margin="537,30,0,0" VerticalAlignment="Top" Width="122" Height="23" Click="btnBrowse_Click"/>
-        <Button Content="Submit data" x:Name="btnUpload" HorizontalAlignment="Left" Margin="537,58,0,0" VerticalAlignment="Top" Width="122" Height="23" Click="btnUpload_Click" />
-        <TextBox HorizontalAlignment="Left" Height="102" Margin="20,337,0,0" TextWrapping="Wrap" Text="Enter data" VerticalAlignment="Top" Width="512" />
-        <TextBox x:Name="word" HorizontalAlignment="Left" Height="23" Margin="683,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="308" TextChanged="word_TextChanged"/>
-        <ListBox x:Name="synsetsFoundListBox" HorizontalAlignment="Left" Height="381" Margin="683,58,0,0" VerticalAlignment="Top" Width="308" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+        <Image HorizontalAlignment="Left" Name="image1" Height="274" Margin="20,49,0,0" VerticalAlignment="Top" Width="512" Stretch="Fill" />
+        <TextBox x:Name="txtBrowseFile" HorizontalAlignment="Left" Height="23" Margin="20,21,0,0" TextWrapping="Wrap" Text="Browse for photo..." VerticalAlignment="Top" Width="512"/>
+        <Button Content="Browse" x:Name="btnBrowse" HorizontalAlignment="Left" Margin="537,21,0,0" VerticalAlignment="Top" Width="122" Height="23" Click="btnBrowse_Click"/>
+        <Button Content="Submit data" x:Name="btnUpload" HorizontalAlignment="Left" Margin="537,49,0,0" VerticalAlignment="Top" Width="122" Height="23" Click="btnUpload_Click" />
+        <TextBox x:Name="word" HorizontalAlignment="Left" Height="23" Margin="683,21,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="308" TextChanged="word_TextChanged"/>
+        <ListBox x:Name="synsetsFoundListBox" HorizontalAlignment="Left" Height="381" Margin="683,49,0,0" VerticalAlignment="Top" Width="308" ScrollViewer.HorizontalScrollBarVisibility="Disabled" BorderThickness="0" SelectionChanged="synsetsFoundListBox_SelectionChanged">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Vertical">
@@ -19,7 +18,9 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <Label x:Name="synsetsFoundMsg" Content="" HorizontalAlignment="Left" Margin="683,2,0,0" VerticalAlignment="Top" Width="308" Height="28" ToolTip="Type word to find it's synsets"/>
+        <Label x:Name="synsetsFoundMsg" Content="" HorizontalAlignment="Left" Margin="683,49,0,0" VerticalAlignment="Top" Width="308" Height="28" ToolTip="Type word to find it's synsets"/>
+        <Button x:Name="btnAddSynset" Content="&lt;" HorizontalAlignment="Left" Margin="626,207,0,0" VerticalAlignment="Top" Width="33" Height="54" Click="btnAddSynset_Click" IsEnabled="False"/>
+        <ListBox x:Name="taggedSynsetsListBox" HorizontalAlignment="Left" Height="102" Margin="20,328,0,0" VerticalAlignment="Top" Width="512"/>
 
     </Grid>
 </Window>

@@ -38,6 +38,7 @@ namespace OST_App
             _wordNetEngine = new WordNetEngine(root + @"\Users\Martin\Documents\GitHub\OST-grupa-13\OST_App\dict\", false);
 
             synsetsFoundListBox.ItemsSource = synsetsFound;
+            findSynsets(); // For initialization of GUI elements
         }
 
         private void btnBrowse_Click(object sender, RoutedEventArgs e)
@@ -71,9 +72,14 @@ namespace OST_App
             }
         }
 
+        /// <summary>
+        /// Finds synsets of word from text box and displays those synsets or appropriate message.
+        /// </summary>
         private void findSynsets()
         {
             synsetsFound.Clear();
+            synsetsFoundListBox.Visibility = System.Windows.Visibility.Hidden;
+            synsetsFoundMsg.Visibility = System.Windows.Visibility.Visible;
 
             if (word.Text != "")
             {
@@ -90,25 +96,33 @@ namespace OST_App
                     MessageBox.Show("Error:  " + ex); return;
                 }
 
-                // Populate the list of found synsets
-                foreach (SynSet synset in synsets)
+                if (synsets.Count > 0)
                 {
-                    StringBuilder words = new StringBuilder();
-                    bool prependComma = false;
-                    foreach (string w in synset.Words)
+                    // Populate the list of found synsets
+                    foreach (SynSet synset in synsets)
                     {
-                        words.Append((prependComma ? ", " : "") + w);
-                        prependComma = true;
+                        StringBuilder words = new StringBuilder();
+                        bool prependComma = false;
+                        foreach (string w in synset.Words)
+                        {
+                            words.Append((prependComma ? ", " : "") + w);
+                            prependComma = true;
+                        }
+
+                        synsetsFound.Add(new SynSetListItem { Synset = synset, Words = words.ToString(), Desc = synset.Gloss });
                     }
 
-                    synsetsFound.Add(new SynSetListItem { Synset = synset, Words = words.ToString(), Desc = synset.Gloss });
+                    synsetsFoundMsg.Visibility = System.Windows.Visibility.Hidden;
+                    synsetsFoundListBox.Visibility = System.Windows.Visibility.Visible;
                 }
-
-                synsetsFoundMsg.Content = synsets.Count + " found";
+                else
+                {
+                    synsetsFoundMsg.Content = "No synsets found";
+                }
             }
             else
             {
-                synsetsFoundMsg.Content = "";
+                synsetsFoundMsg.Content = "Type word in the field above to find its synsets";
             }
         }
 
@@ -125,6 +139,18 @@ namespace OST_App
         private void word_TextChanged(object sender, TextChangedEventArgs e)
         {
             findSynsets();
+        }
+
+        private void btnAddSynset_Click(object sender, RoutedEventArgs e)
+        {
+            SynSetListItem selectedSynset = ((SynSetListItem)synsetsFoundListBox.SelectedItem);
+            if (selectedSynset != null)
+                MessageBox.Show(selectedSynset.Synset.ID);
+        }
+
+        private void synsetsFoundListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            btnAddSynset.IsEnabled = synsetsFoundListBox.SelectedItem != null;
         }
     }
 }
