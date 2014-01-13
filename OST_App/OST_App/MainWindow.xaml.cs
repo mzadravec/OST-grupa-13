@@ -12,6 +12,11 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.ComponentModel;
+
+using LAIR.ResourceAPIs.WordNet;
+using LAIR.Collections.Generic;
+using System.IO;
 
 namespace OST_App
 {
@@ -20,9 +25,19 @@ namespace OST_App
     /// </summary>
     public partial class MainWindow : Window
     {
+        private WordNetEngine _wordNetEngine;
+
+        private BindingList<SynSetListItem> synsetsFound = new BindingList<SynSetListItem>();
+
         public MainWindow()
         {
             InitializeComponent();
+
+            // create wordnet engine (use disk-based retrieval by default)
+            string root = Directory.GetDirectoryRoot(".");
+            _wordNetEngine = new WordNetEngine(root + @"\Users\Martin\Documents\GitHub\OST-grupa-13\OST_App\dict\", false);
+
+            synsetsFoundListBox.ItemsSource = synsetsFound;
         }
 
         private void btnBrowse_Click(object sender, RoutedEventArgs e)
@@ -55,6 +70,61 @@ namespace OST_App
                 image1.Source = src;
             }
         }
- 
+
+        private void findSynsets()
+        {
+            synsetsFound.Clear();
+
+            if (word.Text != "")
+            {
+                synsetsFoundMsg.Content = "Searching...";
+
+                // Find synsets
+                Set<SynSet> synsets = null;
+                try
+                {
+                    synsets = _wordNetEngine.GetSynSets(word.Text);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error:  " + ex); return;
+                }
+
+                // Populate the list of found synsets
+                foreach (SynSet synset in synsets)
+                {
+                    StringBuilder words = new StringBuilder();
+                    bool prependComma = false;
+                    foreach (string w in synset.Words)
+                    {
+                        words.Append((prependComma ? ", " : "") + w);
+                        prependComma = true;
+                    }
+
+                    synsetsFound.Add(new SynSetListItem { Synset = synset, Words = words.ToString(), Desc = synset.Gloss });
+                }
+
+                synsetsFoundMsg.Content = synsets.Count + " found";
+            }
+            else
+            {
+                synsetsFoundMsg.Content = "";
+            }
+        }
+
+        /// <summary>
+        /// Contains synset and information needed to represent it in ListBox.
+        /// </summary>
+        class SynSetListItem
+        {
+            public SynSet Synset { get; set; }
+            public String Words { get; set; }
+            public String Desc { get; set; }
+        }
+
+        private void word_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            findSynsets();
+        }
     }
 }
