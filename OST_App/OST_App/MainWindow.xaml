@@ -40,7 +40,7 @@
             </ListBox.ItemTemplate>
         </ListBox>
         <TextBox x:Name="tbPictureName" HorizontalAlignment="Left" Height="23" Margin="20,19,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="399" ToolTip="exact name of the picture"/>
-        <Button x:Name="btnPictureSearch" Content="Search" HorizontalAlignment="Left" Margin="424,19,0,0" VerticalAlignment="Top" Width="108" ToolTip="search for picture with specified name"/>
+        <Button x:Name="btnPictureSearch" Content="Search" HorizontalAlignment="Left" Margin="424,19,0,0" VerticalAlignment="Top" Width="108" ToolTip="search for picture with specified name" Click="btnPictureSearch_Click"/>
         <Button x:Name="btnFirstPicture" Content="&lt;&lt;" HorizontalAlignment="Left" Margin="22,440,0,0" VerticalAlignment="Top" Width="40" ToolTip="first picture" Click="btnFirstPicture_Click"/>
         <Button x:Name="btnPrevPicture" Content="&lt;" HorizontalAlignment="Left" Margin="67,440,0,0" VerticalAlignment="Top" Width="25" ToolTip="previous picture" Click="btnPrevPicture_Click"/>
         <Button x:Name="btnLastPicture" Content="&gt;&gt;" HorizontalAlignment="Left" Margin="494,440,0,0" VerticalAlignment="Top" Width="40" ToolTip="last picture" Click="btnLastPicture_Click"/>

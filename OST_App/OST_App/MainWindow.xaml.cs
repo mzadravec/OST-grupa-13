@@ -250,5 +250,17 @@ namespace OST_App
                     return true;
             return false;
         }
+
+        private void btnPictureSearch_Click(object sender, RoutedEventArgs e)
+        {
+            Picture searchResult = Picture.searchPicture(tbPictureName.Text);
+            if (searchResult != null)
+            {
+                currentPicture = searchResult;
+                showPicture(currentPicture.path);
+            } else {
+                MessageBox.Show("Picture with name \"" + tbPictureName.Text + "\" not found.");
+            }
+        }
     }
 }
