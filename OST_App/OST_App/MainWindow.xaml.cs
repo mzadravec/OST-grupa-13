@@ -93,7 +93,7 @@ namespace OST_App
                 Set<SynSet> synsets = null;
                 try
                 {
-                    synsets = _wordNetEngine.GetSynSets(word.Text);
+                    synsets = _wordNetEngine.GetSynSets(word.Text.Trim());
                 }
                 catch (Exception ex)
                 {
