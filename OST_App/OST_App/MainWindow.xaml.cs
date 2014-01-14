@@ -161,7 +161,7 @@ namespace OST_App
 
         private void labelDeleteTag_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            synsetsTagged.Remove((SynSetListItem)((Label)sender).Tag);
+            synsetsTagged.Remove((SynSetListItem)((FrameworkElement)sender).Tag);
         }
 
         /// <summary>
@@ -171,7 +171,7 @@ namespace OST_App
         /// <param name="e"></param>
         private void LabelTag_MouseEnter(object sender, MouseEventArgs e)
         {
-            SynSetListItem synsetLI = (SynSetListItem)((Label)sender).Tag;
+            SynSetListItem synsetLI = (SynSetListItem)((FrameworkElement)sender).Tag;
             Popup popup = new Popup();
             popup.Child = new Border
             {
@@ -183,6 +183,7 @@ namespace OST_App
                     Text = synsetLI.Desc,
                     Padding = new Thickness(5),
                     TextWrapping = TextWrapping.Wrap,
+                    FontWeight = FontWeights.Normal,
                     MaxWidth = 300
                 }
             };
@@ -206,7 +207,5 @@ namespace OST_App
                 tagPopup = null;
             }
         }
-
-
     }
 }

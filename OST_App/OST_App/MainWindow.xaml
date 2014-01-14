@@ -11,7 +11,7 @@
         <ListBox x:Name="synsetsFoundListBox" HorizontalAlignment="Left" Height="381" Margin="683,49,0,0" VerticalAlignment="Top" Width="308" ScrollViewer.HorizontalScrollBarVisibility="Disabled" BorderThickness="0" SelectionChanged="synsetsFoundListBox_SelectionChanged">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Vertical" Cursor="Hand" Margin="0,5">
                         <TextBlock Text="{Binding Title}" FontWeight="Bold" TextWrapping="Wrap"/>
                         <TextBlock Text="{Binding Desc}" Padding="20, 0, 0, 0" TextWrapping="Wrap"/>
                     </StackPanel>
@@ -34,8 +34,8 @@
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal" Margin="5">
-                        <Label Content="{Binding Title}" Background="#FFC3C3C3" Foreground="Black" FontWeight="Bold" Tag="{Binding}" MouseEnter="LabelTag_MouseEnter" MouseLeave="LabelTag_MouseLeave"/>
                         <Label x:Name="labelDeleteTag" Content="X" Background="Black" Foreground="White" Tag="{Binding}" FontWeight="Bold" MouseDown="labelDeleteTag_MouseDown" Cursor="Hand"/>
+                        <Label Content="{Binding Title}" Background="#FFC3C3C3" Foreground="Black" FontWeight="Bold" Tag="{Binding}" MouseEnter="LabelTag_MouseEnter" MouseLeave="LabelTag_MouseLeave"/>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
