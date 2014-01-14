@@ -14,3 +14,4 @@ C:\Users\Martin\Documents\GitHub\OST-grupa-13\OST_App\lib\LAIR.ResourceAPIs.Word
 C:\Users\Martin\Documents\GitHub\OST-grupa-13\OST_App\lib\LAIR.ResourceAPIs.WordNet.pdb
 C:\Users\Martin\Documents\GitHub\OST-grupa-13\OST_App\WordNet\obj\Debug\LAIR.ResourceAPIs.WordNet.dll
 C:\Users\Martin\Documents\GitHub\OST-grupa-13\OST_App\WordNet\obj\Debug\LAIR.ResourceAPIs.WordNet.pdb
+C:\Users\Martin\Documents\GitHub\OST-grupa-13\OST_App\WordNet\obj\Debug\WordNet.csprojResolveAssemblyReference.cache
