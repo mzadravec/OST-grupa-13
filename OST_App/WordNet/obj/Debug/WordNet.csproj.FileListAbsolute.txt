@@ -9,9 +9,3 @@ C:\Users\Martin\Dropbox\9.semestar\OST\WordNetAPI-master\src\WordNet\bin\Debug\L
 C:\Users\Martin\Dropbox\9.semestar\OST\WordNetAPI-master\src\WordNet\obj\Debug\WordNet.csprojResolveAssemblyReference.cache
 C:\Users\Martin\Dropbox\9.semestar\OST\WordNetAPI-master\src\WordNet\obj\Debug\LAIR.ResourceAPIs.WordNet.dll
 C:\Users\Martin\Dropbox\9.semestar\OST\WordNetAPI-master\src\WordNet\obj\Debug\LAIR.ResourceAPIs.WordNet.pdb
-C:\Users\Martin\Documents\GitHub\OST-grupa-13\OST_App\lib\LAIR.ResourceAPIs.WordNet.XML
-C:\Users\Martin\Documents\GitHub\OST-grupa-13\OST_App\lib\LAIR.ResourceAPIs.WordNet.dll
-C:\Users\Martin\Documents\GitHub\OST-grupa-13\OST_App\lib\LAIR.ResourceAPIs.WordNet.pdb
-C:\Users\Martin\Documents\GitHub\OST-grupa-13\OST_App\WordNet\obj\Debug\LAIR.ResourceAPIs.WordNet.dll
-C:\Users\Martin\Documents\GitHub\OST-grupa-13\OST_App\WordNet\obj\Debug\LAIR.ResourceAPIs.WordNet.pdb
-C:\Users\Martin\Documents\GitHub\OST-grupa-13\OST_App\WordNet\obj\Debug\WordNet.csprojResolveAssemblyReference.cache
