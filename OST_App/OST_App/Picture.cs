@@ -59,5 +59,99 @@ namespace OST_App
             }
             return null;
         }
+
+        // first get sysnset id
+        // return lex_id
+        public bool addSynset(string lex_id)
+        {
+            try
+            {
+                SQLiteDatabase db = new SQLiteDatabase();
+                DataTable Synset;
+                String query = "select id from Synset where lex_id='" + lex_id + "';";
+                Synset = db.GetDataTable(query);
+
+                String synsetId;
+
+                // if synset is in db get his id else insert and then get
+                try
+                {
+                    synsetId = (Synset.Rows[0])["id"].ToString();
+                }
+                catch
+                {
+                    Dictionary<String, String> insdata = new Dictionary<String, String>();
+                    insdata.Add("lex_id", lex_id);
+                    db.Insert("Synset", insdata);
+
+                    String querytwo = "select id from Synset where lex_id='" + lex_id + "';";
+                    Synset = db.GetDataTable(querytwo);
+                    synsetId = (Synset.Rows[0])["id"].ToString();
+                }
+
+                Dictionary<String, String> data = new Dictionary<String, String>();
+                data.Add("pic_id", id.ToString());
+                data.Add("syn_id", synsetId);
+                db.Insert("Pic_Syn", data);
+
+                return true;
+            }
+            catch (Exception fail)
+            {
+                Console.WriteLine(fail.Message.ToString());
+                return false;
+            }
+
+        }
+
+        public bool removeSynset(string lex_id)
+        {
+            try
+            {
+                SQLiteDatabase db = new SQLiteDatabase();
+                DataTable Synset;
+                String query = "select id from Synset where lex_id='" + lex_id + "';";
+                Synset = db.GetDataTable(query);
+
+                String synsetId = (Synset.Rows[0])["id"].ToString();
+                db.Delete("Pic_Syn", String.Format("pic_id = {0} and syn_id = {1}", id, synsetId));
+
+                return true;
+            }
+            catch (Exception fail)
+            {
+                Console.WriteLine(fail.Message.ToString());
+                return false;
+            }
+        }
+
+        public List<String> getSynsets()
+        {
+            try
+            {
+                SQLiteDatabase db = new SQLiteDatabase();
+                DataTable Synset;
+                String query = "select syn_id from Pic_Syn where pic_id='" + id.ToString() + "';";
+                Synset = db.GetDataTable(query);
+
+                List<String> synsets = new List<String>();
+                foreach (DataRow r in Synset.Rows)
+                {
+                    DataTable Lex;
+                    String queryTwo = "select lex_id from Synset where id =" + r["syn_id"].ToString() + ";";
+                    Lex = db.GetDataTable(queryTwo);
+
+                    synsets.Add(Lex.Rows[0]["lex_id"].ToString());
+                }
+
+                Console.WriteLine(synsets);
+                return synsets;
+            }
+            catch
+            {
+
+                return new List<string>();
+            }
+        }
     }
 }

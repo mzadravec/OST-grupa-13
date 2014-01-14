@@ -95,6 +95,7 @@ namespace OST_App
                     // Populate the list of found synsets
                     foreach (SynSet synset in synsets)
                     {
+                        Console.WriteLine(synset.ID);
                         StringBuilder title = new StringBuilder();
                         bool prependComma = false;
                         foreach (string w in synset.Words)
