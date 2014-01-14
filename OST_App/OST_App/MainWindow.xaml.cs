@@ -63,35 +63,18 @@ namespace OST_App
             }
         }
 
-        private void btnBrowse_Click(object sender, RoutedEventArgs e)
-        {
-            Microsoft.Win32.OpenFileDialog ofd = new Microsoft.Win32.OpenFileDialog();
-            Nullable<bool> result = ofd.ShowDialog();
-            if (result == true)
-            {
-                txtBrowseFile.Text = ofd.FileName;
-            }
-        }
-
         /// <summary>
-        /// On the click event of Upload button we store the image in Image control.
-        /// Here for providing Source of the image control you need to create an
-        /// object of the BitmapImage class and provide all the functionality.
+        /// Displays picture on form.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-
-        private void btnUpload_Click(object sender, RoutedEventArgs e)
+        /// <param name="relativeUri"></param>
+        private void showPicture(String relativeUri)
         {
-            if (txtBrowseFile.Text.Trim().Length != 0)
-            {
-                BitmapImage src = new BitmapImage();
-                src.BeginInit();
-                src.UriSource = new Uri(txtBrowseFile.Text.Trim(), UriKind.Relative);
-                src.CacheOption = BitmapCacheOption.OnLoad;
-                src.EndInit();
-                image1.Source = src;
-            }
+            BitmapImage src = new BitmapImage();
+            src.BeginInit();
+            src.UriSource = new Uri(relativeUri, UriKind.Relative);
+            src.CacheOption = BitmapCacheOption.OnLoad;
+            src.EndInit();
+            picture.Source = src;
         }
 
         /// <summary>
@@ -164,6 +147,11 @@ namespace OST_App
             findSynsets();
         }
 
+        /// <summary>
+        /// Adds selected synset to tagged synsets.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAddSynset_Click(object sender, RoutedEventArgs e)
         {
             SynSetListItem selectedSynset = ((SynSetListItem)synsetsFoundListBox.SelectedItem);
@@ -177,6 +165,11 @@ namespace OST_App
             btnAddSynset.IsEnabled = synsetsFoundListBox.SelectedItem != null && !synsetsTagged.Contains(synsetsFoundListBox.SelectedItem);
         }
 
+        /// <summary>
+        /// Removes clicked synset from tagged synsets.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void labelDeleteTag_MouseDown(object sender, MouseButtonEventArgs e)
         {
             synsetsTagged.Remove((SynSetListItem)((FrameworkElement)sender).Tag);
