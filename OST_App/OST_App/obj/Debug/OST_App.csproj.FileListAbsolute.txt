@@ -30,3 +30,6 @@ C:\Users\Martin\Documents\GitHub\OST-grupa-13\OST_App\OST_App\bin\Debug\LAIR.Ext
 C:\Users\Martin\Documents\GitHub\OST-grupa-13\OST_App\OST_App\bin\Debug\LAIR.IO.xml
 C:\Users\Martin\Documents\GitHub\OST-grupa-13\OST_App\OST_App\obj\Debug\OST_App.exe
 C:\Users\Martin\Documents\GitHub\OST-grupa-13\OST_App\OST_App\obj\Debug\OST_App.pdb
+C:\Users\Martin\Documents\GitHub\OST-grupa-13\OST_App\OST_App\bin\Debug\LAIR.Collections.dll
+C:\Users\Martin\Documents\GitHub\OST-grupa-13\OST_App\OST_App\bin\Debug\LAIR.Extensions.dll
+C:\Users\Martin\Documents\GitHub\OST-grupa-13\OST_App\OST_App\bin\Debug\LAIR.IO.dll
