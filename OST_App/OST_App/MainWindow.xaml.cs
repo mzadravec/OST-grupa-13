@@ -50,6 +50,7 @@ namespace OST_App
 
             currentPicture = Picture.GetFirstPicture();
             showPicture(currentPicture.path);
+            
         }
 
         /// <summary>

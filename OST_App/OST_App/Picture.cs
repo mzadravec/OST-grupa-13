@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using System.Data.SQLite;
+using System.IO;
 
 namespace OST_App
 {
@@ -33,6 +34,33 @@ namespace OST_App
                     return new Picture(int.Parse(r["id"].ToString()), r["path"].ToString());
                 }
             } catch (Exception fail) {
+                Console.WriteLine(fail.Message.ToString());
+            }
+            return null;
+        }
+
+        static public Picture searchPicture(String name)
+        {
+            try
+            {
+                SQLiteDatabase db = new SQLiteDatabase();
+                DataTable Picture;
+                String query = "select id \"id\", path \"path\" from Picture;";
+                Picture = db.GetDataTable(query);
+
+                Picture currentPic = null;
+                foreach (DataRow r in Picture.Rows)
+                {
+                    if (Path.GetFileName(r["path"].ToString()) == name)
+                    {
+                        currentPic = new Picture(int.Parse(r["id"].ToString()), r["path"].ToString());
+                        return currentPic;
+                    }
+                }
+                return currentPic;
+            }
+            catch (Exception fail)
+            {
                 Console.WriteLine(fail.Message.ToString());
             }
             return null;
