@@ -266,7 +266,7 @@ namespace OST_App
             if (searchResult != null)
             {
                 currentPicture = searchResult;
-                showPicture(currentPicture.path);
+                showPicture(currentPicture);
             } else {
                 MessageBox.Show("Picture with name \"" + tbPictureName.Text + "\" not found.");
             }
