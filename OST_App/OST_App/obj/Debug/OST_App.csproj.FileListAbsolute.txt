@@ -37,7 +37,6 @@ C:\Users\Igor\Documents\GitHub\OST-grupa-13\OST_App\OST_App\bin\Debug\OST_App.ex
 C:\Users\Igor\Documents\GitHub\OST-grupa-13\OST_App\OST_App\bin\Debug\OST_App.pdb
 C:\Users\Igor\Documents\GitHub\OST-grupa-13\OST_App\OST_App\bin\Debug\LAIR.ResourceAPIs.WordNet.dll
 C:\Users\Igor\Documents\GitHub\OST-grupa-13\OST_App\OST_App\bin\Debug\LAIR.ResourceAPIs.WordNet.pdb
-C:\Users\Igor\Documents\GitHub\OST-grupa-13\OST_App\OST_App\bin\Debug\LAIR.ResourceAPIs.WordNet.xml
 C:\Users\Igor\Documents\GitHub\OST-grupa-13\OST_App\OST_App\bin\Debug\LAIR.Collections.xml
 C:\Users\Igor\Documents\GitHub\OST-grupa-13\OST_App\OST_App\bin\Debug\LAIR.Extensions.xml
 C:\Users\Igor\Documents\GitHub\OST-grupa-13\OST_App\OST_App\bin\Debug\LAIR.IO.xml

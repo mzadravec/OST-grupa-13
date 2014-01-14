@@ -46,21 +46,7 @@ namespace OST_App
             synsetsTaggedListBox.ItemsSource = synsetsTagged;
             findSynsets(); // For initialization of GUI elements
 
-            try
-            {
-                SQLiteDatabase db = new SQLiteDatabase();
-                DataTable Picture;
-                String query = "select id \"id\" from Picture;";
-                Picture = db.GetDataTable(query);
-                // looped through for some other reason
-                foreach (DataRow r in Picture.Rows)
-                {
-                    Console.WriteLine(r["id"].ToString());
-                }
-            }
-            catch (Exception fail) {
-                Console.WriteLine(fail.Message.ToString());
-            }
+            Picture.GetFirstPicture();
         }
 
         /// <summary>

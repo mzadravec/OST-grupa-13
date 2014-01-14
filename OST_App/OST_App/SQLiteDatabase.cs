@@ -14,7 +14,7 @@ namespace OST_App
         /// </summary>
         public SQLiteDatabase()
         {
-            dbConnection = @"Data Source=C:\Users\Igor\Documents\GitHub\OST-grupa-13\OST_App\OST_App\ost.sqlite";
+            dbConnection = @"Data Source=..\..\ost.sqlite";
         }
 
         /// <summary>
