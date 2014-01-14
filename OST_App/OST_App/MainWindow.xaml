@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="480.818" Width="943.005">
     <Grid>
-        <Image HorizontalAlignment="Left" x:Name="picture" Height="248" Margin="20,47,0,0" VerticalAlignment="Top" Width="512" Stretch="Fill" />
+        <Image HorizontalAlignment="Left" x:Name="picture" Height="248" Margin="20,47,0,0" VerticalAlignment="Top" Width="512" />
         <TextBox x:Name="word" HorizontalAlignment="Left" Height="23" Margin="604,19,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="308" TextChanged="word_TextChanged"/>
         <ListBox x:Name="synsetsFoundListBox" HorizontalAlignment="Left" Height="381" Margin="604,47,0,0" VerticalAlignment="Top" Width="308" ScrollViewer.HorizontalScrollBarVisibility="Disabled" BorderThickness="0" SelectionChanged="synsetsFoundListBox_SelectionChanged">
             <ListBox.ItemTemplate>
