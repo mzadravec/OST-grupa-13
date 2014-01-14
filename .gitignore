@@ -6,3 +6,4 @@ obj/
 Obj/
 Debug/
 OST_App/lib/LAIR.ResourceAPIs.WordNet.*
+.sorted_for_dot_net
