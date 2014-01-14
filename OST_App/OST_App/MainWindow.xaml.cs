@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SQLite;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -43,6 +45,22 @@ namespace OST_App
             synsetsFoundListBox.ItemsSource = synsetsFound;
             synsetsTaggedListBox.ItemsSource = synsetsTagged;
             findSynsets(); // For initialization of GUI elements
+
+            try
+            {
+                SQLiteDatabase db = new SQLiteDatabase();
+                DataTable Picture;
+                String query = "select id \"id\" from Picture;";
+                Picture = db.GetDataTable(query);
+                // looped through for some other reason
+                foreach (DataRow r in Picture.Rows)
+                {
+                    Console.WriteLine(r["id"].ToString());
+                }
+            }
+            catch (Exception fail) {
+                Console.WriteLine(fail.Message.ToString());
+            }
         }
 
         private void btnBrowse_Click(object sender, RoutedEventArgs e)
