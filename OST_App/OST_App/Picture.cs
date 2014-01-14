@@ -16,7 +16,8 @@ namespace OST_App
         public Picture(int id_, String path_) 
         {
             id = id_;
-            path = path_;
+            path = "..\\..\\..\\..\\GAPED\\" + path_.Replace("/", @"\");
+            Console.WriteLine(path);
         }
 
         static public Picture GetFirstPicture() 

@@ -45,8 +45,6 @@ namespace OST_App
             synsetsFoundListBox.ItemsSource = synsetsFound;
             synsetsTaggedListBox.ItemsSource = synsetsTagged;
             findSynsets(); // For initialization of GUI elements
-
-            Picture.GetFirstPicture();
         }
 
         /// <summary>
@@ -203,6 +201,12 @@ namespace OST_App
                 tagPopup.IsOpen = false;
                 tagPopup = null;
             }
+        }
+
+        private void btnFirstPicture_Click(object sender, RoutedEventArgs e)
+        {
+            Picture firstPicture = Picture.GetFirstPicture();
+            showPicture(firstPicture.path);
         }
     }
 }
