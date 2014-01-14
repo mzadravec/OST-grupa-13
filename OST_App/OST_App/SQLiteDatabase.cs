@@ -146,9 +146,8 @@ namespace OST_App
             {
                 this.ExecuteNonQuery(String.Format("delete from {0} where {1};", tableName, where));
             }
-            catch (Exception fail)
+            catch (Exception)
             {
-                //MessageBox.Show(fail.Message);
                 returnCode = false;
             }
             return returnCode;
@@ -176,9 +175,8 @@ namespace OST_App
             {
                 this.ExecuteNonQuery(String.Format("insert into {0}({1}) values({2});", tableName, columns, values));
             }
-            catch (Exception fail)
+            catch (Exception)
             {
-                //MessageBox.Show(fail.Message);
                 returnCode = false;
             }
             return returnCode;

@@ -30,12 +30,12 @@ namespace OST_App
     {
         private WordNetEngine _wordNetEngine;
 
-        private BindingList<SynSetListItem> synsetsFound = new BindingList<SynSetListItem>();
-        private BindingList<SynSetListItem> synsetsTagged = new BindingList<SynSetListItem>();
+        private BindingList<SynSetListItem> _synsetsFound = new BindingList<SynSetListItem>(); // Used for list box
+        private BindingList<SynSetListItem> _synsetsTagged = new BindingList<SynSetListItem>(); // Used for list box
 
-        private Popup tagPopup = null; // Tooltip that shows information about synset tag
+        private Popup _tagPopup = null; // Tooltip that shows information about synset tag
 
-        private Picture currentPicture;
+        private Picture _currentPicture;
 
         public MainWindow()
         {
@@ -44,15 +44,21 @@ namespace OST_App
             // create wordnet engine (use disk-based retrieval by default)
             _wordNetEngine = new WordNetEngine(@"..\..\..\dict\", false); // TODO: Set some other path, absolute (which one)?
 
-            synsetsFoundListBox.ItemsSource = synsetsFound;
-            synsetsTaggedListBox.ItemsSource = synsetsTagged;
+            // bind list box with their lists
+            synsetsFoundListBox.ItemsSource = _synsetsFound;
+            synsetsTaggedListBox.ItemsSource = _synsetsTagged;
+
             findSynsets(); // For initialization of GUI elements
 
-            currentPicture = Picture.GetFirstPicture();
-            showPicture(currentPicture);
-            
+            // show first picture
+            _currentPicture = Picture.GetFirstPicture();
+            showPicture(_currentPicture);
         }
 
+        /// <summary>
+        /// Show picture in picture container and also shows tagged synsets.
+        /// </summary>
+        /// <param name="picture"></param>
         private void showPicture(Picture picture)
         {
             // Display picture in picture container
@@ -64,10 +70,10 @@ namespace OST_App
             pictureContainer.Source = src;
 
             // Show tagged synsets
-            synsetsTagged.Clear();
+            _synsetsTagged.Clear();
             List<String> synsetIDs = picture.getSynsets();
             foreach (var ID in synsetIDs)
-                synsetsTagged.Add(new SynSetListItem(_wordNetEngine.GetSynSet(ID)));
+                _synsetsTagged.Add(new SynSetListItem(_wordNetEngine.GetSynSet(ID)));
         }
 
         /// <summary>
@@ -75,7 +81,7 @@ namespace OST_App
         /// </summary>
         private void findSynsets()
         {
-            synsetsFound.Clear();
+            _synsetsFound.Clear();
             synsetsFoundListBox.Visibility = System.Windows.Visibility.Hidden;
             synsetsFoundMsg.Visibility = System.Windows.Visibility.Visible;
 
@@ -98,7 +104,7 @@ namespace OST_App
                 {
                     // Populate the list of found synsets
                     foreach (SynSet synset in synsets)
-                        synsetsFound.Add(new SynSetListItem (synset));
+                        _synsetsFound.Add(new SynSetListItem (synset));
 
                     synsetsFoundMsg.Visibility = System.Windows.Visibility.Hidden;
                     synsetsFoundListBox.Visibility = System.Windows.Visibility.Visible;
@@ -111,31 +117,6 @@ namespace OST_App
             else
             {
                 synsetsFoundMsg.Content = "Type word in the field above to find its synsets";
-            }
-        }
-
-        /// <summary>
-        /// Contains synset and information needed to represent it in ListBox.
-        /// </summary>
-        class SynSetListItem
-        {
-            public SynSet Synset { get; set; }
-            public String Title { get; set; }
-            public String Desc { get; set; }
-
-            public SynSetListItem(SynSet synset)
-            {
-                StringBuilder title = new StringBuilder();
-                bool prependComma = false;
-                foreach (string w in synset.Words)
-                {
-                    title.Append((prependComma ? ", " : "") + w);
-                    prependComma = true;
-                }
-                title.Append(" [" + synset.POS + "]");
-                this.Title = title.ToString();
-                this.Synset = synset;
-                this.Desc = synset.Gloss;
             }
         }
 
@@ -154,11 +135,11 @@ namespace OST_App
             SynSetListItem selectedSynset = ((SynSetListItem)synsetsFoundListBox.SelectedItem);
             if (selectedSynset != null)
             {
-                if (!listContainsSynset(synsetsTagged, selectedSynset))
-                    synsetsTagged.Add(selectedSynset);
+                if (!listContainsSynset(_synsetsTagged, selectedSynset))
+                    _synsetsTagged.Add(selectedSynset);
             }
             synsetsFoundListBox.SelectedItem = null;
-            currentPicture.addSynset(selectedSynset.Synset.ID);
+            _currentPicture.addSynset(selectedSynset.Synset.ID);
         }
 
         /// <summary>
@@ -169,13 +150,13 @@ namespace OST_App
         private void labelDeleteTag_MouseDown(object sender, MouseButtonEventArgs e)
         {
             SynSetListItem synsetItem = (SynSetListItem)((FrameworkElement)sender).Tag;
-            synsetsTagged.Remove(synsetItem);
-            currentPicture.removeSynset(synsetItem.Synset.ID);
+            _synsetsTagged.Remove(synsetItem);
+            _currentPicture.removeSynset(synsetItem.Synset.ID);
         }
 
         private void synsetsFoundListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            btnAddSynset.IsEnabled = synsetsFoundListBox.SelectedItem != null && !listContainsSynset(synsetsTagged, (SynSetListItem)synsetsFoundListBox.SelectedItem);
+            btnAddSynset.IsEnabled = synsetsFoundListBox.SelectedItem != null && !listContainsSynset(_synsetsTagged, (SynSetListItem)synsetsFoundListBox.SelectedItem);
         }
 
         /// <summary>
@@ -205,7 +186,7 @@ namespace OST_App
             popup.HorizontalOffset = popup.VerticalOffset = 5;
             
             popup.IsOpen = true;
-            tagPopup = popup;
+            _tagPopup = popup;
         }
 
         /// <summary>
@@ -215,35 +196,47 @@ namespace OST_App
         /// <param name="e"></param>
         private void LabelTag_MouseLeave(object sender, MouseEventArgs e)
         {
-            if (tagPopup != null)
+            if (_tagPopup != null)
             {
-                tagPopup.IsOpen = false;
-                tagPopup = null;
+                _tagPopup.IsOpen = false;
+                _tagPopup = null;
             }
         }
 
         private void btnFirstPicture_Click(object sender, RoutedEventArgs e)
         {
-            currentPicture = Picture.GetFirstPicture();
-            showPicture(currentPicture);
+            _currentPicture = Picture.GetFirstPicture();
+            showPicture(_currentPicture);
         }
 
         private void btnLastPicture_Click(object sender, RoutedEventArgs e)
         {
-            currentPicture = Picture.GetLastPicture();
-            showPicture(currentPicture);
+            _currentPicture = Picture.GetLastPicture();
+            showPicture(_currentPicture);
         }
 
         private void btnNextPicture_Click(object sender, RoutedEventArgs e)
         {
-            currentPicture = currentPicture.GetNextPicture();
-            showPicture(currentPicture);
+            _currentPicture = _currentPicture.GetNextPicture();
+            showPicture(_currentPicture);
         }
 
         private void btnPrevPicture_Click(object sender, RoutedEventArgs e)
         {
-            currentPicture = currentPicture.GetPreviousPicture();
-            showPicture(currentPicture);
+            _currentPicture = _currentPicture.GetPreviousPicture();
+            showPicture(_currentPicture);
+        }
+
+        private void btnPictureSearch_Click(object sender, RoutedEventArgs e)
+        {
+            Picture searchResult = Picture.searchPicture(tbPictureName.Text);
+            if (searchResult != null)
+            {
+                _currentPicture = searchResult;
+                showPicture(_currentPicture);
+            } else {
+                MessageBox.Show("Picture with name \"" + tbPictureName.Text + "\" not found.");
+            }
         }
 
         /// <summary>
@@ -252,7 +245,7 @@ namespace OST_App
         /// <param name="list"></param>
         /// <param name="synset"></param>
         /// <returns></returns>
-        static private bool listContainsSynset(BindingList<SynSetListItem> list, SynSetListItem synset) 
+        static private bool listContainsSynset(BindingList<SynSetListItem> list, SynSetListItem synset)
         {
             foreach (var synset_ in list)
                 if (synset_.Synset.ID == synset.Synset.ID)
@@ -260,15 +253,28 @@ namespace OST_App
             return false;
         }
 
-        private void btnPictureSearch_Click(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Contains synset and extra information needed to represent it in ListBox.
+        /// </summary>
+        class SynSetListItem
         {
-            Picture searchResult = Picture.searchPicture(tbPictureName.Text);
-            if (searchResult != null)
+            public SynSet Synset { get; set; }
+            public String Title { get; set; }
+            public String Desc { get; set; }
+
+            public SynSetListItem(SynSet synset)
             {
-                currentPicture = searchResult;
-                showPicture(currentPicture);
-            } else {
-                MessageBox.Show("Picture with name \"" + tbPictureName.Text + "\" not found.");
+                StringBuilder title = new StringBuilder();
+                bool prependComma = false;
+                foreach (string w in synset.Words)
+                {
+                    title.Append((prependComma ? ", " : "") + w);
+                    prependComma = true;
+                }
+                title.Append(" [" + synset.POS + "]");
+                this.Title = title.ToString();
+                this.Synset = synset;
+                this.Desc = synset.Gloss;
             }
         }
     }
