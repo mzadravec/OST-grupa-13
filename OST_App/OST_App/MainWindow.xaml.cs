@@ -146,14 +146,17 @@ namespace OST_App
         private void btnAddSynset_Click(object sender, RoutedEventArgs e)
         {
             SynSetListItem selectedSynset = ((SynSetListItem)synsetsFoundListBox.SelectedItem);
-            if (selectedSynset != null && !synsetsTagged.Contains(selectedSynset))
-                synsetsTagged.Add(selectedSynset);
+            if (selectedSynset != null)
+            {
+                if (!listContainsSynset(synsetsTagged, selectedSynset))
+                    synsetsTagged.Add(selectedSynset);
+            }
             synsetsFoundListBox.SelectedItem = null;
         }
 
         private void synsetsFoundListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            btnAddSynset.IsEnabled = synsetsFoundListBox.SelectedItem != null && !synsetsTagged.Contains(synsetsFoundListBox.SelectedItem);
+            btnAddSynset.IsEnabled = synsetsFoundListBox.SelectedItem != null && !listContainsSynset(synsetsTagged, (SynSetListItem)synsetsFoundListBox.SelectedItem);
         }
 
         /// <summary>
@@ -232,6 +235,20 @@ namespace OST_App
         {
             currentPicture = currentPicture.GetPreviousPicture();
             showPicture(currentPicture.path);
+        }
+
+        /// <summary>
+        /// Checks if list of SynSetListItems contains given SynsetListItem. Compares synsets by ID.
+        /// </summary>
+        /// <param name="list"></param>
+        /// <param name="synset"></param>
+        /// <returns></returns>
+        static private bool listContainsSynset(BindingList<SynSetListItem> list, SynSetListItem synset) 
+        {
+            foreach (var synset_ in list)
+                if (synset_.Synset.ID == synset.Synset.ID)
+                    return true;
+            return false;
         }
     }
 }
