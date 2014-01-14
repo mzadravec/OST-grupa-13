@@ -211,14 +211,26 @@ namespace OST_App
 
         private void btnFirstPicture_Click(object sender, RoutedEventArgs e)
         {
-            Picture firstPicture = Picture.GetFirstPicture();
-            showPicture(firstPicture.path);
+            currentPicture = Picture.GetFirstPicture();
+            showPicture(currentPicture.path);
         }
 
         private void btnLastPicture_Click(object sender, RoutedEventArgs e)
         {
-            Picture lastPicture = Picture.GetLastPicture();
-            showPicture(lastPicture.path);
+            currentPicture = Picture.GetLastPicture();
+            showPicture(currentPicture.path);
+        }
+
+        private void btnNextPicture_Click(object sender, RoutedEventArgs e)
+        {
+            currentPicture = currentPicture.GetNextPicture();
+            showPicture(currentPicture.path);
+        }
+
+        private void btnPrevPicture_Click(object sender, RoutedEventArgs e)
+        {
+            currentPicture = currentPicture.GetPreviousPicture();
+            showPicture(currentPicture.path);
         }
     }
 }

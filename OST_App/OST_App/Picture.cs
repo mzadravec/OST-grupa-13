@@ -20,6 +20,61 @@ namespace OST_App
             Console.WriteLine(path);
         }
 
+        public Picture GetNextPicture()
+        {
+            try
+            {
+                SQLiteDatabase db = new SQLiteDatabase();
+                DataTable Picture;
+                String query = "select id \"id\", path \"path\" from Picture where id > " + this.id + " limit 1;";
+                Picture = db.GetDataTable(query);
+                // should have only one row
+                Picture currentPicture = null;
+                foreach (DataRow r in Picture.Rows)
+                {
+                    currentPicture = new Picture(int.Parse(r["id"].ToString()), r["path"].ToString());
+                }
+                if (currentPicture == null)
+                {
+                    // if on last picture
+                    return GetFirstPicture();
+                }
+                return currentPicture;
+            }
+            catch (Exception fail)
+            {
+                Console.WriteLine(fail.Message.ToString());
+            }
+            return null;
+        }
+
+        public Picture GetPreviousPicture()
+        {
+            try
+            {
+                SQLiteDatabase db = new SQLiteDatabase();
+                DataTable Picture;
+                String query = "select id \"id\", path \"path\" from Picture where id < " + this.id + " ORDER BY id DESC limit 1;";
+                Picture = db.GetDataTable(query);
+                // should have only one row
+                Picture currentPicture = null;
+                foreach (DataRow r in Picture.Rows)
+                {
+                    currentPicture = new Picture(int.Parse(r["id"].ToString()), r["path"].ToString());
+                }
+                if (currentPicture == null) {
+                    // if on first picture
+                    return GetLastPicture();
+                }
+                return currentPicture;
+            }
+            catch (Exception fail)
+            {
+                Console.WriteLine(fail.Message.ToString());
+            }
+            return null;
+        }
+
         static public Picture GetFirstPicture() 
         {
             try {
@@ -47,6 +102,7 @@ namespace OST_App
                 String query = "select id \"id\", path \"path\" from Picture order by id DESC limit 1;";
                 Picture = db.GetDataTable(query);
                 Picture currentPic = null;
+                // should be only one row
                 foreach (DataRow r in Picture.Rows)
                 {
                     currentPic = new Picture(int.Parse(r["id"].ToString()), r["path"].ToString());
