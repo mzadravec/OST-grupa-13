@@ -49,22 +49,25 @@ namespace OST_App
             findSynsets(); // For initialization of GUI elements
 
             currentPicture = Picture.GetFirstPicture();
-            showPicture(currentPicture.path);
+            showPicture(currentPicture);
             
         }
 
-        /// <summary>
-        /// Displays picture on form.
-        /// </summary>
-        /// <param name="relativeUri"></param>
-        private void showPicture(String relativeUri)
+        private void showPicture(Picture picture)
         {
+            // Display picture in picture container
             BitmapImage src = new BitmapImage();
             src.BeginInit();
-            src.UriSource = new Uri(relativeUri, UriKind.Relative);
+            src.UriSource = new Uri(picture.path, UriKind.Relative);
             src.CacheOption = BitmapCacheOption.OnLoad;
             src.EndInit();
-            picture.Source = src;
+            pictureContainer.Source = src;
+
+            // Show tagged synsets
+            synsetsTagged.Clear();
+            List<String> synsetIDs = picture.getSynsets();
+            foreach (var ID in synsetIDs)
+                synsetsTagged.Add(new SynSetListItem(_wordNetEngine.GetSynSet(ID)));
         }
 
         /// <summary>
@@ -95,19 +98,7 @@ namespace OST_App
                 {
                     // Populate the list of found synsets
                     foreach (SynSet synset in synsets)
-                    {
-                        Console.WriteLine(synset.ID);
-                        StringBuilder title = new StringBuilder();
-                        bool prependComma = false;
-                        foreach (string w in synset.Words)
-                        {
-                            title.Append((prependComma ? ", " : "") + w);
-                            prependComma = true;
-                        }
-                        title.Append(" [" + synset.POS + "]");
-
-                        synsetsFound.Add(new SynSetListItem { Synset = synset, Title = title.ToString(), Desc = synset.Gloss });
-                    }
+                        synsetsFound.Add(new SynSetListItem (synset));
 
                     synsetsFoundMsg.Visibility = System.Windows.Visibility.Hidden;
                     synsetsFoundListBox.Visibility = System.Windows.Visibility.Visible;
@@ -131,6 +122,21 @@ namespace OST_App
             public SynSet Synset { get; set; }
             public String Title { get; set; }
             public String Desc { get; set; }
+
+            public SynSetListItem(SynSet synset)
+            {
+                StringBuilder title = new StringBuilder();
+                bool prependComma = false;
+                foreach (string w in synset.Words)
+                {
+                    title.Append((prependComma ? ", " : "") + w);
+                    prependComma = true;
+                }
+                title.Append(" [" + synset.POS + "]");
+                this.Title = title.ToString();
+                this.Synset = synset;
+                this.Desc = synset.Gloss;
+            }
         }
 
         private void word_TextChanged(object sender, TextChangedEventArgs e)
@@ -139,7 +145,7 @@ namespace OST_App
         }
 
         /// <summary>
-        /// Adds selected synset to tagged synsets.
+        /// Adds selected synset to tagged synsets and updates database.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -152,21 +158,24 @@ namespace OST_App
                     synsetsTagged.Add(selectedSynset);
             }
             synsetsFoundListBox.SelectedItem = null;
-        }
-
-        private void synsetsFoundListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            btnAddSynset.IsEnabled = synsetsFoundListBox.SelectedItem != null && !listContainsSynset(synsetsTagged, (SynSetListItem)synsetsFoundListBox.SelectedItem);
+            currentPicture.addSynset(selectedSynset.Synset.ID);
         }
 
         /// <summary>
-        /// Removes clicked synset from tagged synsets.
+        /// Removes clicked synset from tagged synsets and updates database.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void labelDeleteTag_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            synsetsTagged.Remove((SynSetListItem)((FrameworkElement)sender).Tag);
+            SynSetListItem synsetItem = (SynSetListItem)((FrameworkElement)sender).Tag;
+            synsetsTagged.Remove(synsetItem);
+            currentPicture.removeSynset(synsetItem.Synset.ID);
+        }
+
+        private void synsetsFoundListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            btnAddSynset.IsEnabled = synsetsFoundListBox.SelectedItem != null && !listContainsSynset(synsetsTagged, (SynSetListItem)synsetsFoundListBox.SelectedItem);
         }
 
         /// <summary>
@@ -216,25 +225,25 @@ namespace OST_App
         private void btnFirstPicture_Click(object sender, RoutedEventArgs e)
         {
             currentPicture = Picture.GetFirstPicture();
-            showPicture(currentPicture.path);
+            showPicture(currentPicture);
         }
 
         private void btnLastPicture_Click(object sender, RoutedEventArgs e)
         {
             currentPicture = Picture.GetLastPicture();
-            showPicture(currentPicture.path);
+            showPicture(currentPicture);
         }
 
         private void btnNextPicture_Click(object sender, RoutedEventArgs e)
         {
             currentPicture = currentPicture.GetNextPicture();
-            showPicture(currentPicture.path);
+            showPicture(currentPicture);
         }
 
         private void btnPrevPicture_Click(object sender, RoutedEventArgs e)
         {
             currentPicture = currentPicture.GetPreviousPicture();
-            showPicture(currentPicture.path);
+            showPicture(currentPicture);
         }
 
         /// <summary>

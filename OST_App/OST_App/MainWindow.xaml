@@ -4,7 +4,7 @@
         Title="MainWindow" Height="636.061" Width="944.278">
     <Grid>
         <Grid Margin="21,47,404,176">
-            <Image x:Name="picture"/>
+            <Image x:Name="pictureContainer"/>
         </Grid>
         <TextBox x:Name="word" HorizontalAlignment="Left" Height="23" Margin="604,19,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="308" TextChanged="word_TextChanged"/>
         <ListBox x:Name="synsetsFoundListBox" HorizontalAlignment="Left" Height="541" Margin="604,47,0,0" VerticalAlignment="Top" Width="308" ScrollViewer.HorizontalScrollBarVisibility="Disabled" BorderThickness="0" SelectionChanged="synsetsFoundListBox_SelectionChanged">
