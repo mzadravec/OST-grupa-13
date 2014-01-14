@@ -37,5 +37,27 @@ namespace OST_App
             }
             return null;
         }
+
+        static public Picture GetLastPicture()
+        {
+            try
+            {
+                SQLiteDatabase db = new SQLiteDatabase();
+                DataTable Picture;
+                String query = "select id \"id\", path \"path\" from Picture order by id DESC limit 1;";
+                Picture = db.GetDataTable(query);
+                Picture currentPic = null;
+                foreach (DataRow r in Picture.Rows)
+                {
+                    currentPic = new Picture(int.Parse(r["id"].ToString()), r["path"].ToString());
+                }
+                return currentPic;
+            }
+            catch (Exception fail)
+            {
+                Console.WriteLine(fail.Message.ToString());
+            }
+            return null;
+        }
     }
 }

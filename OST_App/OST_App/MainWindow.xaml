@@ -41,7 +41,7 @@
         <Button x:Name="btnPictureSearch" Content="Search" HorizontalAlignment="Left" Margin="424,19,0,0" VerticalAlignment="Top" Width="108" ToolTip="search for picture with specified name"/>
         <Button x:Name="btnFirstPicture" Content="&lt;&lt;" HorizontalAlignment="Left" Margin="20,299,0,0" VerticalAlignment="Top" Width="40" ToolTip="first picture" Click="btnFirstPicture_Click"/>
         <Button x:Name="btnPrevPicture" Content="&lt;" HorizontalAlignment="Left" Margin="65,299,0,0" VerticalAlignment="Top" Width="25" ToolTip="previous picture"/>
-        <Button x:Name="btnLastPicture" Content="&gt;&gt;" HorizontalAlignment="Left" Margin="492,299,0,0" VerticalAlignment="Top" Width="40" ToolTip="last picture"/>
+        <Button x:Name="btnLastPicture" Content="&gt;&gt;" HorizontalAlignment="Left" Margin="492,299,0,0" VerticalAlignment="Top" Width="40" ToolTip="last picture" Click="btnLastPicture_Click"/>
         <Button x:Name="btnNextPicture" Content="&gt;" HorizontalAlignment="Left" Margin="462,299,0,0" VerticalAlignment="Top" Width="25" ToolTip="next picture"/>
 
     </Grid>

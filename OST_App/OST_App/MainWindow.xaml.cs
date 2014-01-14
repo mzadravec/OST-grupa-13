@@ -35,6 +35,8 @@ namespace OST_App
 
         private Popup tagPopup = null; // Tooltip that shows information about synset tag
 
+        private Picture currentPicture;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -45,6 +47,9 @@ namespace OST_App
             synsetsFoundListBox.ItemsSource = synsetsFound;
             synsetsTaggedListBox.ItemsSource = synsetsTagged;
             findSynsets(); // For initialization of GUI elements
+
+            currentPicture = Picture.GetFirstPicture();
+            showPicture(currentPicture.path);
         }
 
         /// <summary>
@@ -207,6 +212,12 @@ namespace OST_App
         {
             Picture firstPicture = Picture.GetFirstPicture();
             showPicture(firstPicture.path);
+        }
+
+        private void btnLastPicture_Click(object sender, RoutedEventArgs e)
+        {
+            Picture lastPicture = Picture.GetLastPicture();
+            showPicture(lastPicture.path);
         }
     }
 }
