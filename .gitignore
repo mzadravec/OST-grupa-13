@@ -1,4 +1,5 @@
 .DS_Store
+*.suo
 bin/
 Bin/
 obj/
