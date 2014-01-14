@@ -14,6 +14,11 @@ namespace OST_App
         private int id;
         public String path;
 
+        /// <summary>
+        ///     Constructor for specifying the Picture with its ID and path.
+        /// </summary>
+        /// <param name="id_">ID of the picture</param>
+        /// <param name="path_">path of the picture, relative to the GAPED directory</param>
         public Picture(int id_, String path_) 
         {
             id = id_;
@@ -21,6 +26,10 @@ namespace OST_App
             Console.WriteLine(path);
         }
 
+        /// <summary>
+        ///     Gets the next picture based on current picture ID. If called on last picture, first picture is returned
+        /// </summary>
+        /// <returns>the next picture</returns>
         public Picture GetNextPicture()
         {
             try
@@ -49,6 +58,10 @@ namespace OST_App
             return null;
         }
 
+        /// <summary>
+        ///     Gets the previous picture based on current picture ID. If called on first picture, last picture is returned
+        /// </summary>
+        /// <returns>the previous picture</returns>
         public Picture GetPreviousPicture()
         {
             try
@@ -76,6 +89,10 @@ namespace OST_App
             return null;
         }
 
+        /// <summary>
+        ///     Gets the first picture from the DB
+        /// </summary>
+        /// <returns>the first picture</returns>
         static public Picture GetFirstPicture() 
         {
             try {
@@ -94,6 +111,11 @@ namespace OST_App
             return null;
         }
 
+        /// <summary>
+        ///     Gets the first picture from the DB
+        /// </summary>
+        /// <param name="name">the name for image that should be searched</param>
+        /// <returns>the first picture</returns>
         static public Picture searchPicture(String name)
         {
             try
@@ -121,6 +143,10 @@ namespace OST_App
             return null;
         }
 
+        /// <summary>
+        ///     Gets the last picture from the DB
+        /// </summary>
+        /// <returns>the last picture</returns>
         static public Picture GetLastPicture()
         {
             try
@@ -144,8 +170,11 @@ namespace OST_App
             return null;
         }
 
-        // first get sysnset id
-        // return lex_id
+        /// <summary>
+        ///     Adds synset for this Picture with corresponding lex id
+        /// </summary>
+        /// <param name="lex_id"></param>
+        /// <returns>whether the insertion succeded or not</returns>
         public bool addSynset(string lex_id)
         {
             try
@@ -157,7 +186,7 @@ namespace OST_App
 
                 String synsetId;
 
-                // if synset is in db get his id else insert and then get
+                // if synset is in db get its id else insert and then get
                 try
                 {
                     synsetId = (Synset.Rows[0])["id"].ToString();
@@ -188,6 +217,11 @@ namespace OST_App
 
         }
 
+        /// <summary>
+        ///     Removes synset for this Picture with corresponding lex id
+        /// </summary>
+        /// <param name="lex_id"></param>
+        /// <returns>whether the deletion succeded or not</returns>
         public bool removeSynset(string lex_id)
         {
             try
@@ -209,6 +243,10 @@ namespace OST_App
             }
         }
 
+        /// <summary>
+        ///     Gets all synsets from the DB for this Picture
+        /// </summary>
+        /// <returns>list of all synsets for this image</returns>
         public List<String> getSynsets()
         {
             try
