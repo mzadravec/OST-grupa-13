@@ -14,7 +14,7 @@ namespace OST_App
         /// </summary>
         public SQLiteDatabase()
         {
-            dbConnection = @"Data Source=..\..\ost.sqlite";
+            dbConnection = @"Data Source=..\..\..\ost.sqlite";
         }
 
         /// <summary>

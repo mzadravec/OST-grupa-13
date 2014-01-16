@@ -22,7 +22,7 @@ namespace OST_App
         public Picture(int id_, String path_) 
         {
             id = id_;
-            path = "..\\..\\..\\..\\GAPED\\" + path_.Replace("/", @"\");
+            path = "..\\..\\..\\..\\..\\GAPED\\" + path_.Replace("/", @"\");
             Console.WriteLine(path);
         }
 
@@ -128,7 +128,8 @@ namespace OST_App
                 Picture currentPic = null;
                 foreach (DataRow r in Picture.Rows)
                 {
-                    if (Path.GetFileName(r["path"].ToString()) == name)
+                    String filename = Path.GetFileName(r["path"].ToString());
+                    if (filename.Substring(0, filename.LastIndexOf(".")).ToLower() == name.ToLower())
                     {
                         currentPic = new Picture(int.Parse(r["id"].ToString()), r["path"].ToString());
                         return currentPic;

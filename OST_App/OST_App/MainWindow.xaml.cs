@@ -1,25 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.SQLite;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.ComponentModel;
 using System.Windows.Controls.Primitives;
 
 using LAIR.ResourceAPIs.WordNet;
 using LAIR.Collections.Generic;
-using System.IO;
 
 namespace OST_App
 {
@@ -42,7 +34,8 @@ namespace OST_App
             InitializeComponent();
 
             // create wordnet engine (use disk-based retrieval by default)
-            _wordNetEngine = new WordNetEngine(@"..\..\..\dict\", false); // TODO: Set some other path, absolute (which one)?
+            System.Console.WriteLine(System.IO.Directory.GetCurrentDirectory());
+            _wordNetEngine = new WordNetEngine(@"..\..\..\..\dict\", false); // TODO: Set some other path, absolute (which one)?
 
             // bind list box with their lists
             synsetsFoundListBox.ItemsSource = _synsetsFound;

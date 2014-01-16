@@ -1,8 +1,0 @@
-C:\Users\Martin\Documents\GitHub\OST-grupa-13\OST_App\OST_App\bin\Release\OST_App.exe.config
-C:\Users\Martin\Documents\GitHub\OST-grupa-13\OST_App\OST_App\obj\Release\MainWindow.baml
-C:\Users\Martin\Documents\GitHub\OST-grupa-13\OST_App\OST_App\obj\Release\MainWindow.g.cs
-C:\Users\Martin\Documents\GitHub\OST-grupa-13\OST_App\OST_App\obj\Release\App.g.cs
-C:\Users\Martin\Documents\GitHub\OST-grupa-13\OST_App\OST_App\obj\Release\OST_App_MarkupCompile.cache
-C:\Users\Martin\Documents\GitHub\OST-grupa-13\OST_App\OST_App\obj\Release\OST_App.g.resources
-C:\Users\Martin\Documents\GitHub\OST-grupa-13\OST_App\OST_App\obj\Release\OST_App.Properties.Resources.resources
-C:\Users\Martin\Documents\GitHub\OST-grupa-13\OST_App\OST_App\obj\Release\OST_App.csproj.GenerateResource.Cache
