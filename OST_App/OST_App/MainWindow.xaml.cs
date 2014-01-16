@@ -34,7 +34,6 @@ namespace OST_App
             InitializeComponent();
 
             // create wordnet engine (use disk-based retrieval by default)
-            System.Console.WriteLine(System.IO.Directory.GetCurrentDirectory());
             _wordNetEngine = new WordNetEngine(@"..\..\..\..\dict\", false); // TODO: Set some other path, absolute (which one)?
 
             // bind list box with their lists
@@ -222,12 +221,29 @@ namespace OST_App
 
         private void btnPictureSearch_Click(object sender, RoutedEventArgs e)
         {
+            searchPicture();
+        }
+
+
+        private void tbPictureName_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+                searchPicture();
+        }
+
+        /// <summary>
+        /// Reads picture name from text box, finds it and then displays it.
+        /// </summary>
+        private void searchPicture()
+        {
             Picture searchResult = Picture.searchPicture(tbPictureName.Text);
             if (searchResult != null)
             {
                 _currentPicture = searchResult;
                 showPicture(_currentPicture);
-            } else {
+            }
+            else
+            {
                 MessageBox.Show("Picture with name \"" + tbPictureName.Text + "\" not found.");
             }
         }
