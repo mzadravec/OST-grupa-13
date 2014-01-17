@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="443ac47d-30ad-49ea-b91d-696814a4e401"
+  name="WordNet"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="53703858-caf1-4597-ba00-784f5b795d0b"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DLAIR.ResourceAPIs.WordNet"
+      tag="ViewCode" />
+  </referencesInternal>
+  <packagedElements>
+    <packageHasNamedElement>
+      <class
+        Id="d4f8efb6-0631-4229-bc34-e05c12cd892d"
+        name="WordNetEngine"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="6aedf0c5-525b-4abe-b521-41e80372ea09"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FMartin%2FDocuments%2FGitHub%2FOST-grupa-13%2FOST_App%2FWordNet%2Fbin%2Fx86%2FDebug%2FLAIR.ResourceAPIs.WordNet.dll Namespace%3DLAIR.ResourceAPIs.WordNet Type%3DWordNetEngine"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="3a4fa636-e1ed-4dd2-8e58-a3c15557bbee"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="2a499599-0c6e-4f3e-91e4-f86cec261bb6">
+                <propertyInstance
+                  Id="d92e5b27-ee50-4396-ba59-c903533721a1"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="92564e85-1d14-4303-9ebd-34200b80a43c">
+                <propertyInstance
+                  Id="1a0e8ab3-84c6-4608-ab46-8c57f1f7a50c"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="65141c93-3150-4b1a-a2d4-6242b6a4dc9a">
+                <propertyInstance
+                  Id="8407948b-54a9-49a2-98cf-ecf3c9c3e976"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="972306d2-2cff-42ef-a36a-4cba0ee6e725">
+                <propertyInstance
+                  Id="badfb52c-c472-4226-9251-f54a9cb93116"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="f91a1bd1-2f2c-44b6-9a9f-39777739b346">
+                <propertyInstance
+                  Id="3de246de-b489-444b-8419-553a67d9fc7d"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="68a89ad3-6bbc-4c20-9827-ef4793a36885"
+        name="SynSet"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="70b9cb26-4cdb-4392-985b-a9091b678a0a"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FMartin%2FDocuments%2FGitHub%2FOST-grupa-13%2FOST_App%2FWordNet%2Fbin%2Fx86%2FRelease%2FLAIR.ResourceAPIs.WordNet.dll Namespace%3DLAIR.ResourceAPIs.WordNet Type%3DSynSet"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="12c0f1d2-c515-477b-ad13-5bed5daf61d4"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="8a5bb1c4-6aab-4722-b962-890c7cf4e3e6">
+                <propertyInstance
+                  Id="3791ab4a-3f69-4d42-8ca8-faf7b6acf363"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="8d2cfc0a-5606-4a27-82f5-43fce641f2e9">
+                <propertyInstance
+                  Id="d8becb45-0fec-4e73-8bb7-4d795f53ca5b"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="60de2520-6599-420a-a547-ed224d1ba507">
+                <propertyInstance
+                  Id="a064a4b7-8702-41c6-80d7-8328aeddab50"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="fa580d04-7a2c-44ca-b8cd-cf208bf1589a">
+                <propertyInstance
+                  Id="b267476f-96e9-4e2a-a110-ff262ca26b27"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="f272b6d9-33ed-4447-b2d2-108090b5fa1b">
+                <propertyInstance
+                  Id="0a3ed77d-45d6-4bb1-8d3f-4a36f2b2cc78"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </class>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

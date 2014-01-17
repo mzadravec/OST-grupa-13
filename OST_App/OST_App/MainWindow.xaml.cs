@@ -195,15 +195,25 @@ namespace OST_App
             }
         }
 
-        private void btnFirstPicture_Click(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Jumps to closest picture from previous category.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnPreviousCategoryPicture_Click(object sender, RoutedEventArgs e)
         {
-            _currentPicture = Picture.GetFirstPicture();
+            _currentPicture = _currentPicture.GetPrevCategoryPicture();
             showPicture(_currentPicture);
         }
 
-        private void btnLastPicture_Click(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Jumps to closest picture from next category.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnNextCategoryPicture_Click(object sender, RoutedEventArgs e)
         {
-            _currentPicture = Picture.GetLastPicture();
+            _currentPicture = _currentPicture.GetNextCategoryPicture();
             showPicture(_currentPicture);
         }
 

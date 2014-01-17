@@ -13,6 +13,7 @@ namespace OST_App
     {
         private int id;
         public String path;
+        private String _originalPath;
 
         /// <summary>
         ///     Constructor for specifying the Picture with its ID and path.
@@ -22,8 +23,8 @@ namespace OST_App
         public Picture(int id_, String path_) 
         {
             id = id_;
+            _originalPath = path_;
             path = "..\\..\\..\\..\\..\\GAPED\\" + path_.Replace("/", @"\");
-            Console.WriteLine(path);
         }
 
         /// <summary>
@@ -81,6 +82,64 @@ namespace OST_App
                     return GetLastPicture();
                 }
                 return currentPicture;
+            }
+            catch (Exception fail)
+            {
+                Console.WriteLine(fail.Message.ToString());
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Gets first next picture that is from different category.
+        /// </summary>
+        /// <returns></returns>
+        public Picture GetNextCategoryPicture()
+        {
+            try
+            {
+                SQLiteDatabase db = new SQLiteDatabase();
+                DataTable Picture;
+                String query = "select id \"id\", path \"path\" from Picture where id > " + this.id + ";";
+                Picture = db.GetDataTable(query);
+
+                String currentPicDir = Path.GetDirectoryName(this._originalPath);
+                foreach (DataRow r in Picture.Rows)
+                {
+                    if (!Path.GetDirectoryName(r["path"].ToString()).Equals(currentPicDir))
+                        return new Picture(int.Parse(r["id"].ToString()), r["path"].ToString());
+                }
+                // if on last picture
+                return GetFirstPicture();
+            }
+            catch (Exception fail)
+            {
+                Console.WriteLine(fail.Message.ToString());
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Get first previous picture that is from different category.
+        /// </summary>
+        /// <returns></returns>
+        public Picture GetPrevCategoryPicture()
+        {
+            try
+            {
+                SQLiteDatabase db = new SQLiteDatabase();
+                DataTable Picture;
+                String query = "select id \"id\", path \"path\" from Picture where id < " + this.id + " order by id desc;";
+                Picture = db.GetDataTable(query);
+
+                String currentPicDir = Path.GetDirectoryName(this._originalPath);
+                foreach (DataRow r in Picture.Rows)
+                {
+                    if (!Path.GetDirectoryName(r["path"].ToString()).Equals(currentPicDir))
+                        return new Picture(int.Parse(r["id"].ToString()), r["path"].ToString());
+                }
+                // if on first picture
+                return GetLastPicture();
             }
             catch (Exception fail)
             {
@@ -267,7 +326,6 @@ namespace OST_App
                     synsets.Add(Lex.Rows[0]["lex_id"].ToString());
                 }
 
-                Console.WriteLine(synsets);
                 return synsets;
             }
             catch
