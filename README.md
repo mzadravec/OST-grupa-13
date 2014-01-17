@@ -3,6 +3,8 @@ OST-grupa-13
 Aplikacija povezuje GAPED bazu sa sinsetima iz WordNet rjecnika. Kroz aplikaciju je moguce pregledavati slike iz GAPED baze, dodavati im sinsete iz WordNet-a te pregledavati dodane sinsete. Sve se trajno sprema u SQLite bazu.
 SQLite baza, GAPED baza i WordNet rjecnik dolaze skupa s aplikacijom te nije potrebno nista dodatno instalirati.
 
+VAZNO: Da bi se projekt uspjesno pokrenuo, potrebno je u Solution properties postaviti platformu na x86!
+
 Baza je sqlite3 baza, tablica slika se naziva Picture i ima dva atributa, jedinstveni id slike i relativnu putanju do slike koje se sve nalaze u GAPED/ direktoriju.
 Skripta picturePaths.sh popunjava bazu relativnim putanjama do slika ukoliko je potrebno dodati jos slika.
 
