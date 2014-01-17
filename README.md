@@ -1,8 +1,12 @@
 OST-grupa-13
 ============
+Aplikacija povezuje GAPED bazu sa sinsetima iz WordNet rjecnika. Kroz aplikaciju je moguce pregledavati slike iz GAPED baze, dodavati im sinsete iz WordNet-a te pregledavati dodane sinsete. Sve se trajno sprema u SQLite bazu.
+SQLite baza, GAPED baza i WordNet rjecnik dolaze skupa s aplikacijom te nije potrebno nista dodatno instalirati.
 
 Baza je sqlite3 baza, tablica slika se naziva Picture i ima dva atributa, jedinstveni id slike i relativnu putanju do slike koje se sve nalaze u GAPED/ direktoriju.
 Skripta picturePaths.sh popunjava bazu relativnim putanjama do slika ukoliko je potrebno dodati jos slika.
+
+Najbitniji dokumenti su  MainWindow.xaml (izgled), MainWindow.xaml.cs(akcije) i Picture.cs(model slike).
 
 Za pristup i koristenje WordNet-a koristen je WordNetAPI https://github.com/zacg/WordNetAPI od Matt Gerbera.
 Stanje repozitorija WordNetAPI-a kakav je bio 16.1.2014. spremljeno je u repozitoriju.
