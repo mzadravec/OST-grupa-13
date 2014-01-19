@@ -1,7 +1,7 @@
 ﻿<Window x:Class="OST_App.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="636.061" Width="921.373">
+        Title="GAPED + WordNet" Height="636.061" Width="921.373">
     <Grid>
         <Grid Margin="21,47,381,176">
             <Image x:Name="pictureContainer"/>
